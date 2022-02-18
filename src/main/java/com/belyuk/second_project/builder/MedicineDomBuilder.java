@@ -1,9 +1,9 @@
 package com.belyuk.second_project.builder;
 
 
-import com.belyuk.second_project.entity.impl.AntibioticsImpl;
+import com.belyuk.second_project.entity.Antibiotics;
 import com.belyuk.second_project.entity.Medicine;
-import com.belyuk.second_project.entity.impl.VitaminsImpl;
+import com.belyuk.second_project.entity.Vitamins;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -33,11 +33,11 @@ public class MedicineDomBuilder {
   private static final String PRICE = "price";
   private static final String ISSUE_DATE = "issue_date";
   private static final String EXPIRY_DATE = "expiry_date";
-  private static final String SOLUBILITY = "solubility";
   private static final String SERIAL = "serial";
   private static final String DATE_PATTERN = "dd.MM.yyyy";
   private static final String VITAMINS = "vitamins";
   private static final String ANTIBIOTICS = "antibiotics";
+  private static final String ACTIVITY_SPECTRUM="activity_spectrum";
 
   public MedicineDomBuilder() {
     medicineSet = new HashSet<Medicine>();
@@ -77,7 +77,7 @@ public class MedicineDomBuilder {
   }
 
   private Medicine buildVitamins(Element medicineElement) {
-    VitaminsImpl vitamins = new VitaminsImpl();
+    Vitamins vitamins = new Vitamins();
     vitamins.setName(getElementTextContent(medicineElement, NAME));
     vitamins.setManufacturer(getElementTextContent(medicineElement, MANUFACTURER));
     vitamins.setDosageForm(getElementTextContent(medicineElement, DOSAGE_FORM));
@@ -93,7 +93,7 @@ public class MedicineDomBuilder {
   }
 
   private Medicine buildAntibiotics(Element medicineElement) {
-    AntibioticsImpl antibiotics = new AntibioticsImpl();
+    Antibiotics antibiotics = new Antibiotics();
     antibiotics.setName(getElementTextContent(medicineElement, NAME));
     antibiotics.setManufacturer(getElementTextContent(medicineElement, MANUFACTURER));
     antibiotics.setDosageForm(getElementTextContent(medicineElement, DOSAGE_FORM));
@@ -104,6 +104,8 @@ public class MedicineDomBuilder {
     antibiotics.setMedCertificateIssueDate(getElementDateContent(medicineElement, ISSUE_DATE));
     antibiotics.setMedCertificateExpiryDate(
         getElementDateContent(medicineElement, EXPIRY_DATE));
+    antibiotics.setMedCertificateExpiryDate(
+        getElementDateContent(medicineElement, ACTIVITY_SPECTRUM));
     return antibiotics;
   }
 

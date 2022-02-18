@@ -1,10 +1,9 @@
 package com.belyuk.second_project.builder;
 
 
-import com.belyuk.second_project.tag.MedicinesXmlTag;
-import com.belyuk.second_project.entity.impl.AntibioticsImpl;
+import com.belyuk.second_project.entity.Antibiotics;
 import com.belyuk.second_project.entity.Medicine;
-
+import com.belyuk.second_project.tag.MedicinesXmlTag;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -42,8 +41,8 @@ public class MedicineStaxBuilder {
         if (type == XMLStreamConstants.START_ELEMENT) {
           name = reader.getLocalName();
           if (name.equals(MedicinesXmlTag.ANTIBIOTICS.getValue())) {
-            Medicine medicine = buildMedicine(reader);
-            medicineSet.add(medicine);
+            Antibiotics antibiotics = buildAntibiotics(reader);
+            medicineSet.add(antibiotics);
           }
         }
       }
@@ -52,9 +51,9 @@ public class MedicineStaxBuilder {
     }
   }
 
-  private Medicine buildMedicine(XMLStreamReader reader)
+  private Antibiotics buildAntibiotics(XMLStreamReader reader)
       throws XMLStreamException {
-    AntibioticsImpl antibiotics = new AntibioticsImpl();
+    Antibiotics antibiotics = new Antibiotics();
 
     antibiotics.setId(reader.getAttributeValue(null, MedicinesXmlTag.ID.getValue()));
     antibiotics.setName(reader.getAttributeValue(null,
@@ -75,6 +74,7 @@ public class MedicineStaxBuilder {
             case DOSAGE -> antibiotics.setDosage(getXMLText(reader));
             case AMOUNT -> antibiotics.setAmount(Integer.parseInt(getXMLText(reader)));
             case ID -> antibiotics.setId(getXMLText(reader));
+            case ACTIVITY_SPECTRUM -> antibiotics.setSpectrumActivity(getXMLText(reader));
 //            case PRICE -> antibiotics.setPrice(getBigDecimalValue(reader)); //TODO
           }
         }

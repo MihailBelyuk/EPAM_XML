@@ -1,7 +1,7 @@
 package com.belyuk.second_project.tag;
 
 public enum MedicinesXmlTag {
-   ANTIBIOTICS("antibiotics"),
+  ANTIBIOTICS("antibiotics"),
 
   NAME("name"),
   MANUFACTURER("manufacturer"),
@@ -18,7 +18,7 @@ public enum MedicinesXmlTag {
   EXPIRY_DATE("expiry_date"),
   SOLUBILITY("solubility"),
   PAINKILLER("painkiller"),
-  ORIGIN("origin");
+  ACTIVITY_SPECTRUM("activity_spectrum");
   private String value;
 
   MedicinesXmlTag(String value) {
