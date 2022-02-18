@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema
+  xlmns="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.pharm.by/shop/medicines"
+  xmlns:tns="http://www.pharm.by/shop/medicines"
+  elementFormDefault="qualified">
+
+
+  <element name="medicines">
+    <complexType>
+      <sequence>
+        <element ref="tns:medicine" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name="medicine" type="tns:Medicine" abstract="true"/>
+  <element name="antibiotics" type="tns:Antibiotics" substitutionGroup="tns:medicine"/>
+  <element name="vitamins" type="tns:Vitamins" substitutionGroup="tns:medicine"/>
+  <element name="painkiller" type="tns:Painkiller" substitutionGroup="tns:medicine"/>
+
+  <complexType name="Medicine">
+    <sequence>
+      <element name="name">
+        <simpleType>
+          <restriction base="string">
+            <pattern value="\w+\d+"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="manufacturer" type="string"/>
+      <element name="certificate">
+        <complexType>
+          <sequence>
+            <element name="issue_date">
+              <simpleType>
+                <restriction base="date"/>
+              </simpleType>
+            </element>
+            <element name="expiry_date">
+              <simpleType>
+                <restriction base="date"/>
+              </simpleType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="dosage_form">
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="tablet"/>
+            <enumeration value="drops"/>
+            <enumeration value="solution"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="package">
+        <complexType>
+          <sequence>
+            <element name="package_type">
+              <simpleType>
+                <restriction base="string">
+                  <enumeration value="blister"/>
+                  <enumeration value="bottle"/>
+                  <enumeration value="ampule"/>
+                </restriction>
+              </simpleType>
+            </element>
+            <element name="amount">
+              <simpleType>
+                <restriction base="nonNegativeInteger"/>
+              </simpleType>
+            </element>
+            <element name="price">
+              <simpleType>
+                <restriction base="decimal">
+                  <minInclusive value="1"/>
+                  <maxInclusive value="100"/>
+                </restriction>
+              </simpleType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="dosage">
+        <simpleType>
+          <restriction base="string"/>
+        </simpleType>
+      </element>
+    </sequence>
+    <attribute name="id" use="required" type="tns:IdMedicine"/>
+  </complexType>
+
+  <simpleType name="IdMedicine">
+    <restriction base="ID">
+      <pattern value="[a-z]\d{1,5}"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="SerialNumber">
+    <restriction base="string">
+      <pattern value="[0-9]{8}"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="=Antibiotics">
+    <complexContent>
+      <extension base="tns:Medicine">
+        <sequence>
+          <element name="activity-spectrum">
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="gram positive"/>
+                <enumeration value="gram negative"/>
+                <enumeration value="broad spectrum"/>
+              </restriction>
+            </simpleType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Vitamins">
+    <complexContent>
+      <extension base="tns:Medicine">
+        <sequence>
+          <element name="solubility">
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="water-soluble "/>
+                <enumeration value="fat-soluble"/>
+              </restriction>
+            </simpleType>
+          </element>
+        </sequence>
+        <attribute name="serial" use="required" type="tns:SerialNumber"/>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Painkiller">
+    <complexContent>
+      <extension base="tns:Medicine">
+        <sequence>
+          <element name="origin">
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="natural"/>
+                <enumeration value="semi-synthetic"/>
+                <enumeration value="synthetic"/>
+              </restriction>
+            </simpleType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+</schema>
