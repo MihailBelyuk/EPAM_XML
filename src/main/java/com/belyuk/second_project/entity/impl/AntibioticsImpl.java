@@ -74,19 +74,53 @@ public class AntibioticsImpl implements Medicine {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     AntibioticsImpl that = (AntibioticsImpl) o;
-    return amount == that.amount && Objects.equals(name, that.name)
-        && Objects.equals(manufacturer, that.manufacturer) && Objects.equals(
-        medCertificateIssueDate, that.medCertificateIssueDate) && Objects.equals(
-        medCertificateExpiryDate, that.medCertificateExpiryDate) && Objects.equals(
-        dosageForm, that.dosageForm) && Objects.equals(price, that.price)
-        && Objects.equals(dosage, that.dosage) && Objects.equals(id, that.id);
+
+    if (amount != that.amount) {
+      return false;
+    }
+    if (name != null ? !name.equals(that.name) : that.name != null) {
+      return false;
+    }
+    if (manufacturer != null ? !manufacturer.equals(that.manufacturer)
+        : that.manufacturer != null) {
+      return false;
+    }
+    if (medCertificateIssueDate != null ? !medCertificateIssueDate.equals(
+        that.medCertificateIssueDate) : that.medCertificateIssueDate != null) {
+      return false;
+    }
+    if (medCertificateExpiryDate != null ? !medCertificateExpiryDate.equals(
+        that.medCertificateExpiryDate) : that.medCertificateExpiryDate != null) {
+      return false;
+    }
+    if (dosageForm != null ? !dosageForm.equals(that.dosageForm) : that.dosageForm != null) {
+      return false;
+    }
+    if (price != null ? !price.equals(that.price) : that.price != null) {
+      return false;
+    }
+    if (dosage != null ? !dosage.equals(that.dosage) : that.dosage != null) {
+      return false;
+    }
+    return id != null ? id.equals(that.id) : that.id == null;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, manufacturer, medCertificateIssueDate, medCertificateExpiryDate,
-        dosageForm, amount, price, dosage, id);
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
+    result =
+        31 * result + (medCertificateIssueDate != null ? medCertificateIssueDate.hashCode() : 0);
+    result =
+        31 * result + (medCertificateExpiryDate != null ? medCertificateExpiryDate.hashCode() : 0);
+    result = 31 * result + (dosageForm != null ? dosageForm.hashCode() : 0);
+    result = 31 * result + amount;
+    result = 31 * result + (price != null ? price.hashCode() : 0);
+    result = 31 * result + (dosage != null ? dosage.hashCode() : 0);
+    result = 31 * result + (id != null ? id.hashCode() : 0);
+    return result;
   }
 
   @Override

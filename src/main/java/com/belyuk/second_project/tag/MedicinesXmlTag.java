@@ -1,10 +1,8 @@
 package com.belyuk.second_project.tag;
 
 public enum MedicinesXmlTag {
-  MEDICINES("medicines"),
-  MEDICINE("medicine"),
-  ANTIBIOTICS("antibiotics"),
-  VITAMINS("vitamins"),
+   ANTIBIOTICS("antibiotics"),
+
   NAME("name"),
   MANUFACTURER("manufacturer"),
   CERTIFICATE("certificate"),

@@ -78,22 +78,58 @@ public class VitaminsImpl implements Medicine {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     VitaminsImpl vitamins = (VitaminsImpl) o;
-    return amount == vitamins.amount && Objects.equals(name, vitamins.name)
-        && Objects.equals(serial, vitamins.serial) && Objects.equals(manufacturer,
-        vitamins.manufacturer) && Objects.equals(medCertificateIssueDate,
-        vitamins.medCertificateIssueDate) && Objects.equals(medCertificateExpiryDate,
-        vitamins.medCertificateExpiryDate) && Objects.equals(dosageForm,
-        vitamins.dosageForm) && Objects.equals(price, vitamins.price)
-        && Objects.equals(dosage, vitamins.dosage) && Objects.equals(id,
-        vitamins.id);
+
+    if (amount != vitamins.amount) {
+      return false;
+    }
+    if (name != null ? !name.equals(vitamins.name) : vitamins.name != null) {
+      return false;
+    }
+    if (serial != null ? !serial.equals(vitamins.serial) : vitamins.serial != null) {
+      return false;
+    }
+    if (manufacturer != null ? !manufacturer.equals(vitamins.manufacturer)
+        : vitamins.manufacturer != null) {
+      return false;
+    }
+    if (medCertificateIssueDate != null ? !medCertificateIssueDate.equals(
+        vitamins.medCertificateIssueDate) : vitamins.medCertificateIssueDate != null) {
+      return false;
+    }
+    if (medCertificateExpiryDate != null ? !medCertificateExpiryDate.equals(
+        vitamins.medCertificateExpiryDate) : vitamins.medCertificateExpiryDate != null) {
+      return false;
+    }
+    if (dosageForm != null ? !dosageForm.equals(vitamins.dosageForm)
+        : vitamins.dosageForm != null) {
+      return false;
+    }
+    if (price != null ? !price.equals(vitamins.price) : vitamins.price != null) {
+      return false;
+    }
+    if (dosage != null ? !dosage.equals(vitamins.dosage) : vitamins.dosage != null) {
+      return false;
+    }
+    return id != null ? id.equals(vitamins.id) : vitamins.id == null;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, serial, manufacturer, medCertificateIssueDate,
-        medCertificateExpiryDate,
-        dosageForm, amount, price, dosage, id);
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (serial != null ? serial.hashCode() : 0);
+    result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
+    result =
+        31 * result + (medCertificateIssueDate != null ? medCertificateIssueDate.hashCode() : 0);
+    result =
+        31 * result + (medCertificateExpiryDate != null ? medCertificateExpiryDate.hashCode() : 0);
+    result = 31 * result + (dosageForm != null ? dosageForm.hashCode() : 0);
+    result = 31 * result + amount;
+    result = 31 * result + (price != null ? price.hashCode() : 0);
+    result = 31 * result + (dosage != null ? dosage.hashCode() : 0);
+    result = 31 * result + (id != null ? id.hashCode() : 0);
+    return result;
   }
 
   @Override
