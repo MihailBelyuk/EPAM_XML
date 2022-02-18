@@ -1,9 +1,9 @@
 package com.belyuk.second_project.builder;
 
 
-import com.belyuk.second_project.entity.impl.AntibioticsImpl;
+import com.belyuk.second_project.entity.Antibiotics;
 import com.belyuk.second_project.entity.Medicine;
-import com.belyuk.second_project.entity.impl.VitaminsImpl;
+import com.belyuk.second_project.entity.Vitamins;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -77,7 +77,7 @@ public class MedicineDomBuilder {
   }
 
   private Medicine buildVitamins(Element medicineElement) {
-    VitaminsImpl vitamins = new VitaminsImpl();
+    Vitamins vitamins = new Vitamins();
     vitamins.setName(getElementTextContent(medicineElement, NAME));
     vitamins.setManufacturer(getElementTextContent(medicineElement, MANUFACTURER));
     vitamins.setDosageForm(getElementTextContent(medicineElement, DOSAGE_FORM));
@@ -93,7 +93,7 @@ public class MedicineDomBuilder {
   }
 
   private Medicine buildAntibiotics(Element medicineElement) {
-    AntibioticsImpl antibiotics = new AntibioticsImpl();
+    Antibiotics antibiotics = new Antibiotics();
     antibiotics.setName(getElementTextContent(medicineElement, NAME));
     antibiotics.setManufacturer(getElementTextContent(medicineElement, MANUFACTURER));
     antibiotics.setDosageForm(getElementTextContent(medicineElement, DOSAGE_FORM));

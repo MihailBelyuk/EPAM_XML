@@ -1,10 +1,9 @@
 package com.belyuk.second_project.builder;
 
 
-import com.belyuk.second_project.tag.MedicinesXmlTag;
-import com.belyuk.second_project.entity.impl.AntibioticsImpl;
+import com.belyuk.second_project.entity.Antibiotics;
 import com.belyuk.second_project.entity.Medicine;
-
+import com.belyuk.second_project.tag.MedicinesXmlTag;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -54,7 +53,7 @@ public class MedicineStaxBuilder {
 
   private Medicine buildMedicine(XMLStreamReader reader)
       throws XMLStreamException {
-    AntibioticsImpl antibiotics = new AntibioticsImpl();
+    Antibiotics antibiotics = new Antibiotics();
 
     antibiotics.setId(reader.getAttributeValue(null, MedicinesXmlTag.ID.getValue()));
     antibiotics.setName(reader.getAttributeValue(null,
